@@ -1,0 +1,14 @@
+{
+  "name": "monopoly",
+  "version": "1.0.0",
+  "description": "monopoly with online multiplayer",
+  "main": "server.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jimmynewsom",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
