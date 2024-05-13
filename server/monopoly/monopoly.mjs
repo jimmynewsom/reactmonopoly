@@ -1,3 +1,62 @@
+import fs from 'fs';
+import { parse } from 'csv-parse';
+
+
+class Property {
+
+  //type can be property, railroad, or utility
+  constructor(name, type, price, rents, mortgageValue, color){
+    this.name = name;
+    this.type = type;
+    this.price = price;
+    this.rents = rents;
+    this.mortgageValue = mortgageValue;
+    this.color = color;
+  }
+
+  setOwner(owner){
+    this.owner = owner;
+  }
+}
+
+
+let standardProperties;
+const propertyMap = new Map();
+
+//these should maybe be synchronous instead of async, since I need them to initialize at start up. but it's not that important
+// fs.readFile("./standardProperties.csv", function (err, fileData) {
+//   parse(fileData, {columns: false, trim: true}, function(err, rows) {
+//     standardProperties = rows;
+
+//     standardProperties.forEach((row, i) => {
+//       //the first row is just the names of the columns
+//       if(i!==0){
+//         //each row is [0] Name, [1] Price, [2] PricePerHouse, [3] Rent, [4] Rent(1 House), [5] Rent(2 Houses), [6] Rent(3 Houses)
+//         //  [7] Rent(4 Houses), [8] Rent(Hotel), [9] Mortgage
+//         let property = new Property(row[0], "property", row[1], row[9], row[4], row[5], row[6], row[7], row[8], row[9]);
+//         cardMap.set(row[0], card);
+//       }
+//     });
+//   });
+// });
+
+
+
+class Player {
+  location = 0; // -1 = jail
+  properties = [];
+  cash = 1500;
+  GOOJF = 0; //Get Out Of Jail Free
+
+  constructor(id, name){
+    this.id = id;  
+    this.name = name;
+  }
+
+  setToken(token){
+    this.token = token;
+  }
+}
 
 
 
@@ -10,15 +69,17 @@ export class Monopoly {
     this.players = players;
   }
 
-  move(id, roll){
+  move(playerID, roll){
     //move player roll spaces
   }
 
-  buy(property, player){
+  buy(playerID, property){
     //player buys a property
   }
 
-  trade(){
+  //Details objects specify what players are trading
+  //looks like Details()
+  trade(p1ID, p1Details, p2ID, p2Details){
     //players trade
   }
 
@@ -27,22 +88,3 @@ export class Monopoly {
 
 }
 
-class Property {
-  constructor(name, color, rents){
-    this.name = name;
-    this.color = color;
-    this.rents = rents;
-  }
-
-  setOwner(owner){
-    this.owner = owner;
-  }
-}
-
-class Utility {
-
-}
-
-class Railroad {
-  
-}
