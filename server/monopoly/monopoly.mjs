@@ -3,6 +3,7 @@ import { parse } from 'csv-parse';
 
 
 class Property {
+  houses = 0; //houses = -1 means mortgaged
 
   //type can be property, railroad, or utility
   constructor(name, type, price, rents, mortgageValue, color){
@@ -16,6 +17,40 @@ class Property {
 
   setOwner(owner){
     this.owner = owner;
+  }
+
+  calculateRent(numRailRoads, numUtilities, roll, monopoly){
+    //mortgaged properties don't collect rent
+    if(this.houses == -1)
+      return 0;
+    //25 for 1 railroad, 50 for 2, 100 for 3, 200 for 4
+    else if(this.type == "railroad"){
+      if(numRailRoads == 1)
+        return 25;
+      else if(numRailRoads == 2)
+        return 50;
+      else if(numRailRoads == 3)
+        return 100;
+      else
+        return 200;
+    }
+    //4 * roll for 1 utility, 10 * roll for 2
+    else if(this.type == "utility"){
+      if(numUtilities == 1)
+        return roll * 4;
+      else
+        return roll * 10;
+    }
+    //if the player has all properties of 1 color but no houses collect double rent
+    else if(houses == 0 && monopoly)
+      return rents[0] * 2;
+    //otherwise collect normal rent
+    else
+      return rents[houses];
+  }
+
+  mortgage(){
+    this.mortgage
   }
 }
 
